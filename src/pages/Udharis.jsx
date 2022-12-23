@@ -28,15 +28,21 @@ const Udharis = () => {
       width: 110,
     },
     {
-      field: "customerId",
-      headerName: "Customer ID",
-      width: 110,
+      field: "customer.name",
+      headerName: "Customer Name",
+      width: 210,
+      renderCell: ({ row }) => <span>{row.customer?.name}</span>,
+    },
+    {
+      field: "customer.phone",
+      headerName: "Customer Phone",
+      width: 210,
+      renderCell: ({ row }) => <span>{row.customer?.name}</span>,
     },
     {
       field: "unpaid",
       headerName: "Unpaid",
-      width: 210,
-      flex: 1,
+      width: 110,
       renderCell: ({ row }) => Math.abs(row.paid - row.amount),
     },
   ];

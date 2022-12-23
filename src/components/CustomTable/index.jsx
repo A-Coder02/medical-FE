@@ -9,6 +9,8 @@ export default function CustomTable({ columns = null, url, maxWidth }) {
   const { tableData } = useCustomTable({ url });
   const { rows, length, isLoading, page, setPage } = tableData;
 
+  console.log({ rows });
+
   return (
     <div style={{ height: "70vh", width: maxWidth || "100%" }}>
       <DataGrid

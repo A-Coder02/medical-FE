@@ -12,11 +12,6 @@ const CustomTableForm = ({
   formProps = {},
 }) => {
   const { formData, resetFormData, setFormData } = formProps;
-  // const intialState = { price: "", name: "" };
-  // const [formData, setFormData] = useState(intialState);
-
-  // const formDataHandler = (e) =>
-  //   setFormData({ ...formData, [e.target.name]: e.target.value });
 
   useEffect(() => {
     defaultData ? setFormData(defaultData) : resetFormData();
@@ -35,7 +30,6 @@ const CustomTableForm = ({
   };
 
   return (
-    // <Box component={{...Paper}} p={2} height="100%">
     <Box component={Paper} p={2} height="100%">
       <Stack component="form" spacing={2} onSubmit={onSubmitHandler}>
         {form}
