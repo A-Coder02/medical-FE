@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import CustomTableLayout from "../components/Layout/CustomTableLayout";
 
 const Udharis = () => {
-  const intialState = { phone: "", name: "", address: "" };
+  const intialState = { amount: "", paid: "", customerId: "" };
   const [formData, setFormData] = useState(intialState);
 
   const formDataHandler = (e) =>
@@ -18,20 +18,26 @@ const Udharis = () => {
       renderCell: ({ row }) => row.id,
     },
     {
-      field: "name",
-      headerName: "Name",
+      field: "amount",
+      headerName: "Amount",
       width: 210,
     },
     {
-      field: "phone",
-      headerName: "Phone",
+      field: "paid",
+      headerName: "Paid",
       width: 110,
     },
     {
-      field: "address",
-      headerName: "Address",
+      field: "customerId",
+      headerName: "Customer ID",
+      width: 110,
+    },
+    {
+      field: "unpaid",
+      headerName: "Unpaid",
       width: 210,
       flex: 1,
+      renderCell: ({ row }) => Math.abs(row.paid - row.amount),
     },
   ];
   return (
@@ -41,22 +47,23 @@ const Udharis = () => {
       formProps={{ formData, resetFormData, setFormData, formDataHandler }}
     >
       <TextField
-        label="Name"
-        name="name"
-        value={formData.name}
+        label="Amount"
+        name="amount"
+        type="number"
+        value={formData.amount}
         onChange={formDataHandler}
       />
       <TextField
-        label="Phone"
+        label="Paid"
         type="number"
-        name="phone"
-        value={formData.phone}
+        name="paid"
+        value={formData.paid}
         onChange={formDataHandler}
       />{" "}
       <TextField
-        label="Address"
-        name="address"
-        value={formData.address}
+        label="Customer"
+        name="customerId"
+        value={formData.customerId}
         onChange={formDataHandler}
       />
     </CustomTableLayout>
