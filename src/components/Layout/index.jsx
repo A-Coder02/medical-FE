@@ -112,7 +112,7 @@ export default function Layout({ children }) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            Medical App
+            Medical App | <small>v1.0</small>
           </Typography>
         </Toolbar>
       </AppBar>

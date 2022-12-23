@@ -10,12 +10,14 @@ import DashboardIcon from "@mui/icons-material/Dashboard";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 import Inventory2Icon from "@mui/icons-material/Inventory2";
+import InfoIcon from "@mui/icons-material/Info";
 import { Link } from "react-router-dom";
 const NAVLIST_DATA = [
   { id: 1, link: "/", name: "Dashboard", icon: <DashboardIcon /> },
   { id: 2, link: "/udharis", name: "Udharis", icon: <CurrencyRupeeIcon /> },
   { id: 3, link: "/customers", name: "Customers", icon: <PeopleAltIcon /> },
-  { id: 3, link: "/products", name: "Products", icon: <Inventory2Icon /> },
+  { id: 4, link: "/products", name: "Products", icon: <Inventory2Icon /> },
+  { id: 5, link: "/about", name: "About", icon: <InfoIcon /> },
 ];
 
 const NavList = ({ open }) => {

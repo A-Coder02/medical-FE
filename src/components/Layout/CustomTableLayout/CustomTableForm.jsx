@@ -10,7 +10,6 @@ const CustomTableForm = ({
   resetDefaultDataHandler,
   url,
   formProps = {},
-  crudProps,
 }) => {
   const { formData, resetFormData, setFormData } = formProps;
 
@@ -25,7 +24,7 @@ const CustomTableForm = ({
       onSuccess: async () => {
         toast.success(`${defaultData ? "Edited" : "Added"} Successfully`);
         resetFormData();
-        crudProps.onPost();
+        resetDefaultDataHandler();
       },
       onError: () => toast.error("Something went wrong!"),
     });

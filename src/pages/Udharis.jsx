@@ -9,7 +9,12 @@ import currencyHandler from "../utils/currency-handler";
 import { baseUrl } from "../utils/urls";
 
 const Udharis = () => {
-  const intialState = { amount: 0, paid: 0, customerId: { name: "", id: "" } };
+  const intialState = {
+    amount: "",
+    paid: 0,
+    customerId: { name: "", id: "" },
+    customer: { name: "", phone: "" },
+  };
   const [formData, setFormData] = useState(intialState);
 
   const formDataHandler = (e) =>
@@ -79,7 +84,7 @@ const Udharis = () => {
           sx={{ width: "100%" }}
           renderInput={(params) => <TextField {...params} label="Customer" />}
           name="customerId"
-          value={formData.customerId?.name}
+          value={formData.customerId?.name || formData?.customer?.name}
           label="Customer"
           onChange={(e, data) => {
             formDataHandler({ target: { name: "customerId", value: data } });
@@ -94,6 +99,7 @@ const Udharis = () => {
           loading={isLoading}
         />
       )}
+      {console.log({ formData })}
       <TextField
         required
         label="Amount"

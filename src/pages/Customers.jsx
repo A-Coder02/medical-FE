@@ -27,10 +27,12 @@ const Customers = () => {
       field: "total_udhari",
       headerName: "Total Udhari",
       width: 210,
-      renderCell: ({ row }) =>
-        currencyHandler(
-          row.udharis.map((u) => u.amount).reduce((a, c) => a + c, 0)
-        ),
+      renderCell: ({ row }) => {
+        const totalUdhari = row.udharis
+          .map((u) => u.amount)
+          .reduce((a, c) => a + c, 0);
+        return totalUdhari ? currencyHandler(totalUdhari) : "No Udhari";
+      },
     },
 
     {

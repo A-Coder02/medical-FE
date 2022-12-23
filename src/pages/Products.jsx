@@ -2,9 +2,10 @@ import { TextField } from "@mui/material";
 import React from "react";
 import { useState } from "react";
 import CustomTableLayout from "../components/Layout/CustomTableLayout";
+import currencyHandler from "../utils/currency-handler";
 
 const Products = () => {
-  const intialState = { price: 0, name: "" };
+  const intialState = { price: "", name: "" };
   const [formData, setFormData] = useState(intialState);
 
   const formDataHandler = (e) =>
@@ -28,7 +29,7 @@ const Products = () => {
       field: "price",
       headerName: "Price",
       width: 210,
-      renderCell: ({ row }) => <span>₹ {row.price}</span>,
+      renderCell: ({ row }) => currencyHandler(row.price),
     },
   ];
   return (

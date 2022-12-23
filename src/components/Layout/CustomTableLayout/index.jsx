@@ -3,20 +3,16 @@ import React, { useState } from "react";
 import CustomTableForm from "./CustomTableForm";
 import CustomTableWrapper from "./CustomTableWrapper";
 
-const CustomTableLayout = ({
-  url,
-  columns,
-  children,
-  formProps,
-  crudProps = {
-    onPost: () => {},
-  },
-}) => {
+const CustomTableLayout = ({ url, columns, children, formProps }) => {
   const [defaultData, setDefaultData] = useState(null);
   const resetDefaultDataHandler = () => setDefaultData(null);
   return (
     <>
-      <Grid container spacing={2}>
+      <Grid
+        container
+        spacing={2}
+        flexDirection={{ xs: "column-reverse", md: "row" }}
+      >
         <Grid item xs={12} md={8}>
           <CustomTableWrapper
             url={url}
@@ -26,7 +22,6 @@ const CustomTableLayout = ({
         </Grid>
         <Grid item xs={12} md={4}>
           <CustomTableForm
-            crudProps={crudProps}
             formProps={formProps}
             form={children}
             url={url}
