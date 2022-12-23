@@ -17,7 +17,7 @@ const CustomTableWrapper = ({
       {
         field: "actions",
         headerName: "Actions",
-        width: 210,
+        width: 110,
         renderCell: ({ row }) => (
           <Stack direction="row" spacing={2}>
             <Typography

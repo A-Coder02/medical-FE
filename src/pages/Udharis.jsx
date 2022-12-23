@@ -1,6 +1,7 @@
 import { TextField } from "@mui/material";
 import React, { useState } from "react";
 import CustomTableLayout from "../components/Layout/CustomTableLayout";
+import currencyHandler from "../utils/currency-handler";
 
 const Udharis = () => {
   const intialState = { amount: "", paid: "", customerId: "" };
@@ -10,6 +11,7 @@ const Udharis = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const resetFormData = () => setFormData(intialState);
+
   const columns = [
     {
       field: "id",
@@ -17,16 +19,7 @@ const Udharis = () => {
       width: 110,
       renderCell: ({ row }) => row.id,
     },
-    {
-      field: "amount",
-      headerName: "Amount",
-      width: 210,
-    },
-    {
-      field: "paid",
-      headerName: "Paid",
-      width: 110,
-    },
+
     {
       field: "customer.name",
       headerName: "Customer Name",
@@ -40,10 +33,22 @@ const Udharis = () => {
       renderCell: ({ row }) => <span>{row.customer?.name}</span>,
     },
     {
+      field: "amount",
+      headerName: "Amount",
+      width: 210,
+      renderCell: ({ row }) => currencyHandler(row.amount),
+    },
+    {
+      field: "paid",
+      headerName: "Paid",
+      width: 110,
+      renderCell: ({ row }) => currencyHandler(row.paid),
+    },
+    {
       field: "unpaid",
       headerName: "Unpaid",
       width: 110,
-      renderCell: ({ row }) => Math.abs(row.paid - row.amount),
+      renderCell: ({ row }) => currencyHandler(Math.abs(row.paid - row.amount)),
     },
   ];
   return (

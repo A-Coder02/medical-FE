@@ -1,6 +1,7 @@
 import { TextField } from "@mui/material";
 import { useState } from "react";
 import CustomTableLayout from "../components/Layout/CustomTableLayout";
+import currencyHandler from "../utils/currency-handler";
 
 const Customers = () => {
   const intialState = { phone: "", name: "", address: "" };
@@ -22,6 +23,16 @@ const Customers = () => {
       headerName: "Name",
       width: 210,
     },
+    {
+      field: "total_udhari",
+      headerName: "Total Udhari",
+      width: 210,
+      renderCell: ({ row }) =>
+        currencyHandler(
+          row.udharis.map((u) => u.amount).reduce((a, c) => a + c, 0)
+        ),
+    },
+
     {
       field: "phone",
       headerName: "Phone",

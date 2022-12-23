@@ -1,6 +1,6 @@
 import * as React from "react";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
-
+import { DataGridPro, GridActionsCellItem } from "@mui/x-data-grid-pro";
 import useCustomTable from "../../hooks/useCustomTable";
 
 export default function CustomTable({ columns = null, url, maxWidth }) {
@@ -26,6 +26,15 @@ export default function CustomTable({ columns = null, url, maxWidth }) {
         paginationMode="server"
         onPageChange={(newPage) => {
           setPage(newPage);
+        }}
+        sx={{
+          "& .MuiDataGrid-cell:last-child,& .MuiDataGrid-columnHeader:last-child":
+            {
+              // backgroundColor: "white",
+              // position: "sticky",
+              // right: 0,
+              // borderLeft: "1px whitesmoke solid",
+            },
         }}
       />
     </div>
