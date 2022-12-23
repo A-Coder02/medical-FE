@@ -1,11 +1,5 @@
-import {
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
-  TextField,
-} from "@mui/material";
-import Autocomplete, { createFilterOptions } from "@mui/material/Autocomplete";
+import { TextField } from "@mui/material";
+import Autocomplete from "@mui/material/Autocomplete";
 
 import axios from "axios";
 import React, { useState } from "react";
@@ -88,7 +82,6 @@ const Udharis = () => {
           value={formData.customerId?.name}
           label="Customer"
           onChange={(e, data) => {
-            console.log({ data });
             formDataHandler({ target: { name: "customerId", value: data } });
           }}
           noOptionsText={

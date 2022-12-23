@@ -1,7 +1,6 @@
 import axios from "axios";
 import React from "react";
 import { useMutation, useQuery } from "react-query";
-import { toast } from "react-toastify";
 import { baseUrl } from "../utils/urls";
 
 const useCustomTable = ({ url, defaultData }) => {

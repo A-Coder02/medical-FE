@@ -1,13 +1,10 @@
 import * as React from "react";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
-import { DataGridPro, GridActionsCellItem } from "@mui/x-data-grid-pro";
 import useCustomTable from "../../hooks/useCustomTable";
 
 export default function CustomTable({ columns = null, url, maxWidth }) {
-
   const { tableData } = useCustomTable({ url });
   const { rows, length, isLoading, page, setPage } = tableData;
-
 
   return (
     <div style={{ height: "70vh", width: maxWidth || "100%" }}>

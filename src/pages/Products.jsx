@@ -1,12 +1,10 @@
-import { Grid, TextField } from "@mui/material";
+import { TextField } from "@mui/material";
 import React from "react";
 import { useState } from "react";
 import CustomTableLayout from "../components/Layout/CustomTableLayout";
-import ProductForm from "../components/product/ProductForm";
-import ProductTable from "../components/product/ProductTable";
 
 const Products = () => {
-  const intialState = { price: "", name: "" };
+  const intialState = { price: 0, name: "" };
   const [formData, setFormData] = useState(intialState);
 
   const formDataHandler = (e) =>
@@ -40,12 +38,14 @@ const Products = () => {
       formProps={{ formData, resetFormData, setFormData, formDataHandler }}
     >
       <TextField
+        required
         label="Name"
         name="name"
         value={formData.name}
         onChange={formDataHandler}
       />
       <TextField
+        required
         label="Price"
         type="number"
         name="price"
