@@ -4,7 +4,15 @@ import React, { useState } from "react";
 import CustomTableForm from "./CustomTableForm";
 import CustomTableWrapper from "./CustomTableWrapper";
 
-const CustomTableLayout = ({ url, columns, children, formProps }) => {
+const CustomTableLayout = ({
+  url,
+  columns,
+  children,
+  formProps,
+  crudProps = {
+    onPost: () => {},
+  },
+}) => {
   const [defaultData, setDefaultData] = useState(null);
   const resetDefaultDataHandler = () => setDefaultData(null);
   return (
@@ -19,6 +27,7 @@ const CustomTableLayout = ({ url, columns, children, formProps }) => {
         </Grid>
         <Grid item xs={12} md={4}>
           <CustomTableForm
+            crudProps={crudProps}
             formProps={formProps}
             form={children}
             url={url}

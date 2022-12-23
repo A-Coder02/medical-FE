@@ -1,16 +1,30 @@
-import { TextField } from "@mui/material";
+import {
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
+} from "@mui/material";
+import Autocomplete, { createFilterOptions } from "@mui/material/Autocomplete";
+
+import axios from "axios";
 import React, { useState } from "react";
+import { useQuery } from "react-query";
 import CustomTableLayout from "../components/Layout/CustomTableLayout";
 import currencyHandler from "../utils/currency-handler";
+import { baseUrl } from "../utils/urls";
 
 const Udharis = () => {
-  const intialState = { amount: "", paid: "", customerId: "" };
+  const intialState = { amount: 0, paid: 0, customerId: { name: "", id: "" } };
   const [formData, setFormData] = useState(intialState);
 
   const formDataHandler = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const resetFormData = () => setFormData(intialState);
+  const { isLoading, data } = useQuery("customer-list", () =>
+    axios.get(baseUrl + "/customers")
+  );
 
   const columns = [
     {
@@ -55,9 +69,40 @@ const Udharis = () => {
     <CustomTableLayout
       url="udharis"
       columns={columns}
-      formProps={{ formData, resetFormData, setFormData, formDataHandler }}
+      formProps={{
+        formData: { ...formData, customerId: formData.customerId?.id },
+        resetFormData,
+        setFormData,
+        formDataHandler,
+      }}
     >
+      {data?.data?.data !== null && (
+        <Autocomplete
+          required
+          disablePortal
+          id="combo-box-demo"
+          options={data?.data?.data.map((c) => ({ ...c, label: c.name })) || []}
+          sx={{ width: "100%" }}
+          renderInput={(params) => <TextField {...params} label="Customer" />}
+          name="customerId"
+          value={formData.customerId?.name}
+          label="Customer"
+          onChange={(e, data) => {
+            console.log({ data });
+            formDataHandler({ target: { name: "customerId", value: data } });
+          }}
+          noOptionsText={
+            <span>
+              {" "}
+              Oh! New Customer?, go to <b>Customers</b> and add it!
+            </span>
+          }
+          clearOnBlur={false}
+          loading={isLoading}
+        />
+      )}
       <TextField
+        required
         label="Amount"
         name="amount"
         type="number"
@@ -71,12 +116,6 @@ const Udharis = () => {
         value={formData.paid}
         onChange={formDataHandler}
       />{" "}
-      <TextField
-        label="Customer"
-        name="customerId"
-        value={formData.customerId}
-        onChange={formDataHandler}
-      />
     </CustomTableLayout>
   );
 };

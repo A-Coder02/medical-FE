@@ -4,12 +4,10 @@ import { DataGridPro, GridActionsCellItem } from "@mui/x-data-grid-pro";
 import useCustomTable from "../../hooks/useCustomTable";
 
 export default function CustomTable({ columns = null, url, maxWidth }) {
-  console.log("layout : ", url);
 
   const { tableData } = useCustomTable({ url });
   const { rows, length, isLoading, page, setPage } = tableData;
 
-  console.log({ rows });
 
   return (
     <div style={{ height: "70vh", width: maxWidth || "100%" }}>
